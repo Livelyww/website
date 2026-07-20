@@ -162,7 +162,7 @@
       {
         "@type": "Question",
         "name": "What does it cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "CASi Direction (Executive Partnership) is $5,000/month with a $10,000 set-up. Full Delivery is $7,500/month. Custom build engagements are quoted by scope." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Every engagement starts with a free discovery call. A full diagnostic is $7,500, credited against setup if you proceed within 30 days. The core engagement is $10,000 setup plus $10,000 per month on a defined six-to-eight month term, with additional team seats at $500 per month and custom delivery scoped to requirements." }
       }
     ]
   }
@@ -171,7 +171,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
   <style>
     /* ─── TOKENS ─────────────────────────────────────────── */
     :root {
@@ -226,6 +227,50 @@
     body.tw-dark .price-period { color: #c4c9d2; }
     body.tw-dark .pricing-features { border-top-color: rgba(255,255,255,0.1); }
     body.tw-dark .pricing-badge { color: #9aa0aa; }
+
+    /* ═══ Engagement ladder ═══ */
+    .ladder { display: flex; flex-direction: column; margin-top: 0.5rem; }
+    .ladder-row { display: grid; grid-template-columns: 44px 1fr; gap: 1.125rem; }
+    .ladder-rail { display: flex; flex-direction: column; align-items: center; }
+    .ladder-node { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9375rem; background: var(--mist); color: var(--graphite); border: 1.5px solid var(--stone); flex-shrink: 0; }
+    .ladder-node-start { background: rgba(255,49,49,0.08); color: var(--red); border-color: rgba(255,49,49,0.35); }
+    .ladder-node-featured { background: var(--red); color: var(--white); border-color: var(--red); }
+    .ladder-line { flex: 1; width: 2px; background: var(--stone); opacity: 0.45; margin: 6px 0; }
+    .ladder-card { background: var(--white); border: 1.5px solid var(--stone); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem; position: relative; }
+    .ladder-card-featured { border: 2px solid var(--red); box-shadow: 0 10px 34px rgba(255,49,49,0.09); }
+    .ladder-card-quiet { background: var(--mist); }
+    .ladder-chip { position: absolute; top: 1.375rem; right: 1.5rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); background: rgba(255,49,49,0.08); border: 1px solid rgba(255,49,49,0.3); padding: 4px 12px; border-radius: 999px; }
+    .ladder-label { font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.625rem; display: block; }
+    .ladder-title-row { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .ladder-title { font-size: 1.25rem; font-weight: 700; color: var(--graphite); letter-spacing: -0.01em; }
+    .ladder-price { font-size: 1rem; font-weight: 700; color: var(--graphite); }
+    .ladder-price-free { color: var(--red); }
+    .ladder-body { font-size: 0.9375rem; color: var(--slate); line-height: 1.7; margin-bottom: 0.875rem; max-width: 72ch; }
+    .ladder-bullets { margin: 0 0 1rem; padding-left: 1.25rem; font-size: 0.9375rem; color: var(--slate); line-height: 1.7; }
+    .ladder-bullets li { margin-bottom: 0.25rem; }
+    .ladder-bullets li::marker { color: var(--red); }
+    .ladder-proof { border-left: 3px solid var(--red); padding: 0.25rem 0 0.25rem 1rem; font-family: var(--font-serif, 'Fraunces', Georgia, serif); font-style: italic; font-size: 0.9375rem; color: var(--graphite); line-height: 1.65; max-width: 70ch; }
+    .ladder-proof-cite { display: block; margin-top: 0.5rem; font-family: var(--font); font-style: normal; font-size: 0.8125rem; font-weight: 600; color: var(--slate); }
+    .ladder-seat { border-top: 1px solid rgba(42,45,49,0.12); margin-top: 1.125rem; padding-top: 1rem; }
+    .ladder-seat-title { font-size: 0.9375rem; font-weight: 700; color: var(--graphite); }
+    .ladder-seat-price { font-size: 0.875rem; font-weight: 600; color: var(--slate); margin-left: 0.5rem; }
+    .ladder-seat p { font-size: 0.875rem; color: var(--slate); line-height: 1.65; margin-top: 0.25rem; max-width: 70ch; }
+    .ladder-cta { text-align: center; margin-top: 1.75rem; }
+    @media (max-width: 640px) {
+      .ladder-row { grid-template-columns: 32px 1fr; gap: 0.875rem; }
+      .ladder-node { width: 30px; height: 30px; font-size: 0.8125rem; }
+      .ladder-card { padding: 1.25rem 1.125rem; }
+      .ladder-chip { position: static; display: inline-block; margin-bottom: 0.625rem; }
+    }
+    body.tw-dark .ladder-card { background: #20242a; border-color: rgba(255,255,255,0.12); }
+    body.tw-dark .ladder-card-featured { border-color: var(--red); }
+    body.tw-dark .ladder-card-quiet { background: #1c1f24; }
+    body.tw-dark .ladder-title, body.tw-dark .ladder-proof, body.tw-dark .ladder-price, body.tw-dark .ladder-seat-title { color: #e6e8ec; }
+    body.tw-dark .ladder-body, body.tw-dark .ladder-bullets, body.tw-dark .ladder-seat p, body.tw-dark .ladder-proof-cite { color: #9aa0aa; }
+    body.tw-dark .ladder-node { background: #20242a; color: #e6e8ec; border-color: rgba(255,255,255,0.22); }
+    body.tw-dark .ladder-node-featured { background: var(--red); color: #fff; border-color: var(--red); }
+    body.tw-dark .ladder-seat { border-top-color: rgba(255,255,255,0.12); }
+
     /* Dark-mode: ticker placeholder card */
     body.tw-dark .ticker-card { background: #20242a; border-color: rgba(255,255,255,0.08); }
     body.tw-dark .ticker-placeholder { background: #1c1f24; border-color: rgba(255,255,255,0.18); color: #9aa0aa; }
@@ -399,7 +444,7 @@
     .how-card { padding: 2rem; border-radius: var(--radius); border: 1.5px solid var(--stone); background: var(--white); transition: border-color 250ms, transform 250ms var(--ease); }
     .how-card:hover { border-color: var(--red); transform: translateY(-3px); }
     .how-card-casi { border-color: rgba(255,49,49,0.3); background: rgba(255,49,49,0.03); }
-    .how-card-label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); margin-bottom: 0.75rem; display: block; }
+    .how-card-label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.75rem; display: block; }
     .how-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.875rem; }
     .how-card-casi h3 { color: var(--red); }
     .how-card p { font-size: 0.9375rem; color: var(--slate); line-height: 1.7; max-width: 100%; }
@@ -436,7 +481,7 @@
     .waste-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1rem; padding-top: 1.25rem; border-top: 1.5px solid var(--stone); }
     .waste-stat strong { display: block; font-size: 1.5rem; font-weight: 900; color: var(--graphite); line-height: 1; letter-spacing: -0.02em; margin-bottom: 4px; }
     .waste-stat span { font-size: 0.75rem; color: var(--slate); line-height: 1.4; display: block; }
-    .waste-source { font-size: 0.6875rem; color: var(--stone); margin-top: 1rem; letter-spacing: 0.04em; }
+    .waste-source { font-size: 0.6875rem; color: var(--slate); margin-top: 1rem; letter-spacing: 0.04em; }
     body.tw-dark .waste-viz { background: #20242a; border-color: rgba(255,255,255,0.08); }
     body.tw-dark .waste-viz-title, body.tw-dark .waste-stat strong { color: #f4f5f6; }
     body.tw-dark .waste-bar-wrap { background: #1c1f24; border-color: rgba(255,255,255,0.08); }
@@ -471,7 +516,7 @@
     .cadence-row .cadence-arrow:nth-of-type(2) { animation-delay: 0.2s; }
     .cadence-row .cadence-arrow:nth-of-type(3) { animation-delay: 0.4s; }
     @keyframes cadence-flow { 0%, 100% { transform: translateX(0); opacity: 0.6; } 50% { transform: translateX(6px); opacity: 1; } }
-    .cadence-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone); flex-shrink: 0; }
+    .cadence-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--slate); flex-shrink: 0; }
     .cadence-steps { display: flex; align-items: center; justify-content: center; gap: 1.75rem; }
     .cadence-step { text-align: center; }
     .cadence-step .c-num { display: block; font-size: 1.75rem; font-weight: 900; color: var(--graphite); line-height: 1; }
@@ -538,7 +583,7 @@
     sup.tm { font-size: 0.5em; vertical-align: super; margin-left: 1px; font-weight: 600; }
 
     .logos-wrap { border-top: 1px solid var(--stone); padding-top: 2.5rem; margin-top: 2.5rem; }
-    .logos-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone); margin-bottom: 1.5rem; text-align: center; }
+    .logos-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--slate); margin-bottom: 1.5rem; text-align: center; }
     .logos-row { display: flex; flex-wrap: wrap; gap: 2.5rem 3rem; align-items: center; justify-content: center; }
     .logos-row img { height: 32px; width: auto; max-width: 140px; object-fit: contain; opacity: 0.85; filter: grayscale(100%) contrast(1.05); transition: filter 280ms ease, opacity 280ms ease, transform 220ms ease; }
     .logos-row img:hover { filter: grayscale(0%) contrast(1); opacity: 1; transform: translateY(-2px); }
@@ -577,7 +622,7 @@
     .ticker-card > div:last-of-type { margin-top: auto; padding-top: 2.5rem; padding-right: 4.5rem; }
     .ticker-placeholder { background: var(--mist); border-style: dashed; align-items: center; justify-content: center; text-align: center; color: var(--slate); font-style: italic; }
     .ticker-placeholder::before, .ticker-placeholder::after { display: none; }
-    @media (prefers-reduced-motion: reduce) { .ticker-track { transform: none !important; } }
+    @media (prefers-reduced-motion: reduce) { .ticker-track { transform: none !important; } .ticker-wrap { mask-image: none; -webkit-mask-image: none; } }
 
     /* ─── FAQ ──────────────────────────────────────────── */
     .faq-list { display: flex; flex-direction: column; gap: 0.75rem; max-width: 880px; margin: 0 auto; }
@@ -608,7 +653,7 @@
     .pricing-card-free { background: var(--mist); border-color: transparent; }
     .pricing-card-free .pricing-features { border-top-color: rgba(0,0,0,0.06); }
     .pricing-badge-free { color: var(--graphite); }
-    .pricing-badge { font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
+    .pricing-badge { font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); }
     .pricing-badge-featured { color: var(--red); }
     .pricing-card h3 { font-size: 1.375rem; font-weight: 800; color: var(--graphite); }
     .pricing-sub { font-size: 0.9rem; color: var(--graphite); line-height: 1.6; font-weight: 500; }
@@ -675,7 +720,7 @@
     .diag-step strong { font-size: 1rem; color: var(--graphite); display: block; margin-bottom: 4px; }
     .diag-step p { font-size: 0.9rem; color: var(--slate); line-height: 1.6; max-width: 100%; }
     .diag-output { padding: 1.5rem; background: var(--mist); border-radius: var(--radius); margin-bottom: 2rem; }
-    .diag-output-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone); margin-bottom: 1rem; }
+    .diag-output-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--slate); margin-bottom: 1rem; }
     .diag-output-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.625rem; }
     .diag-output-grid span { font-size: 0.875rem; color: var(--slate); padding: 0.875rem 1rem; background: var(--white); border-radius: var(--radius-sm); border: 1px solid var(--stone); line-height: 1.5; }
     .diag-cta-block { text-align: center; margin-bottom: 2rem; }
@@ -683,7 +728,7 @@
     .diag-cta-note { font-size: 0.8125rem; color: var(--stone); margin: 0.5rem auto 0; max-width: 100%; }
     .for-who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     .for-who-block { padding: 1.5rem; border-radius: var(--radius); border: 1.5px solid var(--stone); background: var(--white); }
-    .for-who-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone); margin-bottom: 1rem; }
+    .for-who-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--slate); margin-bottom: 1rem; }
     .for-who-block ul { display: flex; flex-direction: column; gap: 0.75rem; }
     .for-who-block li { font-size: 0.9375rem; color: var(--slate); padding-left: 1.125rem; position: relative; line-height: 1.55; }
     .for-who-block li::before { content: '–'; position: absolute; left: 0; color: var(--stone); }
@@ -774,7 +819,7 @@
     <div class="container">
       <nav class="nav-inner" aria-label="Main navigation">
         <a href="#" class="nav-logo" aria-label="Lively home">
-          <img src="livelylogo.svg" alt="Lively" class="nav-logo-img"
+          <img width="650" height="337" src="livelylogo.svg" alt="Lively" class="nav-logo-img"
                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <span class="nav-logo-fallback" style="display:none">Lively</span>
         </a>
@@ -782,7 +827,7 @@
           <a href="#how">How We Work</a>
           <a href="#work">Work</a>
           <a href="#story">Our Story</a>
-          <a href="#engage">Engage</a>
+          <a href="#engage">Get Started</a>
           <a href="#community">Community</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -798,7 +843,7 @@
       <a href="#how">How We Work</a>
       <a href="#work">Work</a>
       <a href="#story">Our Story</a>
-      <a href="#engage">Engage</a>
+      <a href="#engage">Get Started</a>
       <a href="#community">Community</a>
       <a href="#faq">FAQ</a>
       <a href="https://calendar.app.google/8BD4viZodJMxfCtB9" target="_blank" rel="noopener" class="btn btn-white btn-sm">Book a time with Mike</a>
@@ -857,19 +902,19 @@
             </article>
             <article class="ticker-card">
               <p class="testimonial-quote">It's so exciting to see just how much our company has embraced Ericsson Momentum across all our different countries.</p>
-              <div><cite class="testimonial-cite">Sally Croft</cite><span class="testimonial-role">CMO, Ericsson EMEA</span><img class="ticker-logo" src="assets/logos/ericsson-quote-new.png" alt="Ericsson" loading="lazy" /></div>
+              <div><cite class="testimonial-cite">Sally Croft</cite><span class="testimonial-role">CMO, Ericsson EMEA</span><img width="310" height="162" class="ticker-logo" src="assets/logos/ericsson-quote-new.png" alt="Ericsson" loading="lazy" /></div>
             </article>
             <article class="ticker-card">
               <p class="testimonial-quote">Mike is an absolute powerhouse, with an extensive knowledge of marketing, events and business development. Everyone should spend some time with this man, who is truly able to energise any business. Plus, the guy is affable and super collaborative, which is a great plus.</p>
-              <div><cite class="testimonial-cite">Nico Sarti</cite><span class="testimonial-role">Head of Studio, Global Marketing Strategy · The Observer</span><img class="ticker-logo" src="assets/logos/observer.png" alt="The Observer" loading="lazy" /></div>
+              <div><cite class="testimonial-cite">Nico Sarti</cite><span class="testimonial-role">Head of Studio, Global Marketing Strategy · The Observer</span><img width="562" height="90" class="ticker-logo" src="assets/logos/observer.png" alt="The Observer" loading="lazy" /></div>
             </article>
             <article class="ticker-card">
               <p class="testimonial-quote">Mike is an absolute pleasure to work with and understands the role experiential and digital content play in broader marketing strategy. He listens first — to the point where I'd feel comfortable having him pitch in front of our executive leadership team.</p>
-              <div><cite class="testimonial-cite">Stephanie Jeanmougin</cite><span class="testimonial-role">TikTok</span><img class="ticker-logo" src="assets/logos/tiktok.png" alt="TikTok" loading="lazy" /></div>
+              <div><cite class="testimonial-cite">Stephanie Jeanmougin</cite><span class="testimonial-role">TikTok</span><img width="416" height="121" class="ticker-logo" src="assets/logos/tiktok.png" alt="TikTok" loading="lazy" /></div>
             </article>
-            <article class="ticker-card ticker-placeholder" hidden style="display:none">
-              <p class="testimonial-quote">Quote coming soon.</p>
-              <div><cite class="testimonial-cite">Deeps Ramanathan</cite><span class="testimonial-role">Founder &amp; CEO Magentiq · Ex Google, Twitter, IBM, Indeed</span></div>
+            <article class="ticker-card" hidden style="display:none">
+              <p class="testimonial-quote">Simplicity, execution speed, a brain that continuously works for you — so you don't feel as if you're ever lost again when it comes to marketing and growth.</p>
+              <div><cite class="testimonial-cite">Deeps Ramanathan</cite><span class="testimonial-role">CEO, INQA.ai · Ex Google, Twitter, IBM, Indeed</span></div>
             </article>
           </div>
         </div>
@@ -883,14 +928,14 @@
         <div class="logos-wrap reveal" style="border-top:none; padding-top:0; margin-top:0;">
           <p class="logos-label">Brands we've operated for</p>
           <div class="logos-row">
-            <img src="assets/logos/virgin-color.png" alt="Virgin" loading="lazy" class="logo-tall" style="height: 45px" />
-            <img src="assets/logos/spotify.png" alt="Spotify" loading="lazy" />
-            <img src="assets/logos/coinbase.png" alt="Coinbase" loading="lazy" class="logo-short" />
-            <img src="assets/logos/twitter-x-color.png" alt="Twitter / X" loading="lazy" class="logo-mark" style="height: 45px" />
-            <img src="assets/logos/ericsson-color.png" alt="Ericsson" loading="lazy" class="logo-tall" style="height: 45px" />
-            <img src="assets/logos/mazda.avif" alt="Mazda" loading="lazy" class="logo-tall" style="height: 45px" />
-            <img src="assets/logos/polkadot-color.png" alt="Polkadot" loading="lazy" class="logo-tall" style="height: 45px" />
-            <img src="assets/logos/hostelworld-color.png" alt="Hostelworld" loading="lazy" style="height: 45px" />
+            <img width="1200" height="1050" src="assets/logos/virgin-color.png" alt="Virgin" loading="lazy" class="logo-tall" style="height: 45px" />
+            <img width="960" height="289" src="assets/logos/spotify.png" alt="Spotify" loading="lazy" />
+            <img width="3840" height="686" src="assets/logos/coinbase.png" alt="Coinbase" loading="lazy" class="logo-short" />
+            <img width="1200" height="1351" src="assets/logos/twitter-x-color.png" alt="Twitter / X" loading="lazy" class="logo-mark" style="height: 45px" />
+            <img width="1280" height="1121" src="assets/logos/ericsson-color.png" alt="Ericsson" loading="lazy" class="logo-tall" style="height: 45px" />
+            <img width="472" height="434" src="assets/logos/mazda.avif" alt="Mazda" loading="lazy" class="logo-tall" style="height: 45px" />
+            <img width="2779" height="2000" src="assets/logos/polkadot-color.png" alt="Polkadot" loading="lazy" class="logo-tall" style="height: 45px" />
+            <img width="1200" height="154" src="assets/logos/hostelworld-color.png" alt="Hostelworld" loading="lazy" style="height: 45px" />
           </div>
         </div>
       </div>
@@ -959,12 +1004,12 @@
         <div class="how-grid">
           <div class="how-card reveal reveal-delay-1">
             <span class="how-card-label">The Company</span>
-            <div class="how-card-mark"><img src="assets/lively-pink.svg" alt="Lively"></div>
+            <div class="how-card-mark"><img width="650" height="337" src="assets/lively-pink.svg" alt="Lively"></div>
             <p>The delivery engine. Operators, specialists, and the network that executes when direction becomes deployment. We build and run the marketing your business needs.</p>
           </div>
           <div class="how-card how-card-casi reveal reveal-delay-2">
             <span class="how-card-label">The Product</span>
-            <div class="how-card-mark how-card-mark-casi" style="height: 80px"><img src="assets/casi-red-i.svg" alt="CASi" style="width: 130px; height: 130px"></div>
+            <div class="how-card-mark how-card-mark-casi" style="height: 80px"><img width="500" height="500" src="assets/casi-red-i.svg" alt="CASi" style="width: 130px; height: 130px"></div>
             <p style="font-weight: 400">The Connected Audience System Intelligence<sup class="tm">TM</sup>. Where the 'I' means human intelligence, sharpened by AI. Twenty-three governed marketing rules and a 12-step process that connects you directly to the right audience via the right channel with the right messaging. </p>
           </div>
           <div class="how-card reveal reveal-delay-3">
@@ -1198,7 +1243,7 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
               </div>
               <div class="timeline-item">
                 <span class="timeline-brand">2002</span>
-                <span class="timeline-desc">Virgin asked me to set up my own business. Not an offer you get every day. One of the first brand experience agencies of its kind and where CASiTM was actually born, I just didn't know it yet.</span>
+                <span class="timeline-desc">Virgin asked me to set up my own business. Not an offer you get every day. One of the first brand experience agencies of its kind and where CASi<sup class="tm">TM</sup> was actually born, I just didn't know it yet.</span>
               </div>
               <div class="timeline-item">
                 <span class="timeline-brand">2002–2017</span>
@@ -1229,7 +1274,7 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
           <aside>
             <div class="mike-card reveal">
               <div class="mike-photo">
-                <img src="mikewhite.jpg" alt="Mike White, Founder of Lively and Creator of CASi" />
+                <img width="800" height="536" src="mikewhite.jpg" alt="Mike White, Founder of Lively and Creator of CASi" />
               </div>
               <div class="mike-name">Mike White</div>
               <div class="mike-role">Founder, Lively · Creator, CASi<sup class="tm">TM</sup></div>
@@ -1251,78 +1296,70 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
 
     <!-- ═══ PRICING ══════════════════════════════════════════ -->
     <section class="section section-white" id="engage" aria-labelledby="pricing-heading">
-      <div class="container">
+      <div class="container-narrow">
         <header class="section-header reveal">
-          <span class="eyebrow">How you engage</span>
-          <h2 id="pricing-heading">One governed solution. Three levels of support.</h2>
-          <p class="lead">The difference is how much specialist direction and delivery you layer on top.</p>
+          <span class="eyebrow">Get started now</span>
+          <h2 id="pricing-heading">Clarity on your marketing within 48 hours.</h2>
+          <p class="lead">Every engagement is a defined piece of work with defined outcomes — customised to your needs across time and budget. Every level gets you closer to marketing transitioning from a cost centre driving awareness, to a growth engine driving revenue: reducing risk, enabling disciplined capital allocation, and making room for creative tactics.</p>
         </header>
         <div class="urgency reveal"><span>Mike takes a limited number of new client engagements each month.</span> Spaces fill quickly. If you are considering CASi<sup class="tm">TM</sup>, now is the time.</div>
-        <div class="pricing-grid">
-          <div class="pricing-card pricing-card-featured reveal reveal-delay-1">
-            <div class="pricing-badge pricing-badge-featured">CASi<sup class="tm">TM</sup> Direction</div>
-            <h3>Executive Partnership</h3>
-            <p class="pricing-sub">Direction, clarity and cadence — built around your business.</p>
-            <div class="pricing-price"><span class="price-main">$5,000</span><span class="price-period">/month</span></div>
-            <div class="pricing-setup">Set-up: <strong>$10,000</strong></div>
-            <ul class="pricing-features">
-              <li>A specialist as invested in your outcomes as you are</li>
-              <li>Marketing tied to revenue targets, not just reach and impressions</li>
-              <li>A live central system your whole team collaborates with</li>
-              <li>Quarterly review against real audience and market signals</li>
-              <li>Monthly direction — what's working, what's missing, what to stop</li>
-              <li>Bi-weekly marketing &amp; creative strategy session with Mike</li>
-              <li>Access to a global specialist network</li>
-              <li>A peer CEO community navigating the same challenges</li>
-            </ul>
-            <p class="pricing-outcome"><strong>Outcome:</strong> Marketing that drives revenue, not just reach.</p>
-            <a href="https://calendar.app.google/8BD4viZodJMxfCtB9" target="_blank" rel="noopener" class="btn btn-red">Book a time with Mike →</a>
-          </div>
-          <div class="pricing-card reveal reveal-delay-2">
-            <div class="pricing-badge">Lively Delivery</div>
-            <h3>Delivery <span style="color: var(--slate); font-weight: 600;">(Upgrade)</span></h3>
-            <p class="pricing-sub">Full execution. Built around you, not our overhead.</p>
-            <div class="pricing-price"><span class="price-main">$7,500</span><span class="price-period">/month</span></div>
-            <div class="pricing-setup">Direction &amp; Delivery Management<br/>Scoped — priced to your requirements</div>
-            <ul class="pricing-features">
-              <li>Everything in Executive Partnership</li>
-              <li>Custom resources designed around your business, not a standard package</li>
-              <li>Content, media, events and community — ready to deploy when you need them</li>
-              <li>Work with your existing team, add resources into it, or hand us the wheel entirely</li>
-              <li>All the capability of a traditional agency, none of the overhead mark-up you end up paying for</li>
-            </ul>
-            <p class="pricing-outcome"><strong>Outcome:</strong> You set the direction. We build and run the engine.</p>
-            <a href="https://calendar.app.google/8BD4viZodJMxfCtB9" target="_blank" rel="noopener" class="btn btn-outline-red">Discuss scope →</a>
-          </div>
-          <div class="pricing-card pricing-card-free reveal reveal-delay-3">
-            <div class="pricing-badge pricing-badge-free">FREE ENTRY POINT</div>
-            <h3>Want answers?</h3>
-            <p class="pricing-sub">Get the Lively Experience every month. Trend reports and insights, along with real CEO questions, all reasoned and answered through Mike &amp; CASi<sup class="tm">TM</sup>.</p>
-            <div class="pricing-price"><span class="price-scoped">Free</span></div>
-            <div class="pricing-setup">Read it, ask your own questions, get a straight response.</div>
-            <ul class="pricing-features">
-              <li>Real signals from CEOs, CMOs and specialists in the room</li>
-              <li>Pattern reads on what's actually moving revenue right now</li>
-              <li>Frameworks, prompts and CASi<sup class="tm">TM</sup> tools you can use the same week</li>
-              <li>The first place new diagnostics, events and openings are announced</li>
-            </ul>
-            <p class="pricing-outcome"><strong>Outcome:</strong> A monthly cadence that keeps your thinking ahead of the market.</p>
-            <a href="https://newsletter.audience101.co" target="_blank" rel="noopener" class="btn btn-outline-red">Want Monthly Answers? →</a>
-          </div>
-        </div>
-        <div class="talent-doc reveal" hidden style="display:none">
-          <div class="talent-doc-head">
-            <div>
-              <div class="talent-doc-eyebrow">Lively × CASi<sup class="tm">TM</sup> — Connected Audience System Intelligence</div>
-              <div class="talent-doc-title">Managed Talent Layer</div>
+        <div class="ladder">
+
+          <div class="ladder-row reveal reveal-delay-1">
+            <div class="ladder-rail"><div class="ladder-node ladder-node-start">1</div><div class="ladder-line"></div></div>
+            <div class="ladder-card">
+              <div class="ladder-chip">Start here</div>
+              <div class="ladder-title-row"><span class="ladder-title">The discovery call</span><span class="ladder-price ladder-price-free">Free</span></div>
+              <p class="ladder-body">A straight conversation with Mike about where your marketing is, what it's costing you, and whether there's a real fit. No pitch, no deck. You'll leave it knowing whether it's worth going further, either way.</p>
+              <div class="ladder-proof">"I actually thought, oh s***, this looks very complex... Now we've talked and I am in."<span class="ladder-proof-cite">Deeps Ramanathan · CEO, INQA.ai</span></div>
             </div>
-            <div class="talent-doc-meta">Execution capacity<br/>On-demand</div>
           </div>
-          <div class="talent-doc-body">
-            <p class="talent-doc-lede">When execution capacity is required, <em>Lively plugs in vetted specialists.</em></p>
-            <p>Content creators, designers, media specialists, community operators, event producers. You pay talent directly. We direct and quality-assure everything through CASi<sup class="tm">TM</sup>.</p>
+
+          <div class="ladder-row reveal reveal-delay-2">
+            <div class="ladder-rail"><div class="ladder-node">2</div><div class="ladder-line"></div></div>
+            <div class="ladder-card">
+              <div class="ladder-title-row"><span class="ladder-title">The diagnostic</span><span class="ladder-price">$7,500</span></div>
+              <p class="ladder-body">Any AI will give you a free opinion on your marketing — this is not that. Mike runs your business through a governed diagnostic and applies twenty years of operator judgement to what the signals really say. You receive:</p>
+              <ul class="ladder-bullets">
+                <li>A full written report — what's working, what's wasting money, the moves that matter next</li>
+                <li>Every finding scored, evidenced, and specific to your business</li>
+                <li>$7,500 credited in full against setup if you go on within 30 days</li>
+              </ul>
+              <div class="ladder-proof">Nine CEOs sat through a live workshop of the diagnostic in action — and how Mike uses it to adapt their marketing. All nine gave it a 100% recommendation score, and an average of 4.8 out of 5 for relevance to their own business.</div>
+            </div>
           </div>
-          <div class="talent-doc-footer">One engine. One narrative. No chaos.</div>
+
+          <div class="ladder-row reveal reveal-delay-3">
+            <div class="ladder-rail"><div class="ladder-node ladder-node-featured">3</div><div class="ladder-line"></div></div>
+            <div class="ladder-card ladder-card-featured">
+              <span class="ladder-label">The engagement · Where most work begins</span>
+              <div class="ladder-title-row"><span class="ladder-title">The engagement</span><span class="ladder-price">$10,000 setup + $10,000/month</span></div>
+              <p class="ladder-body">A defined term, agreed up front — six to eight months, with a start, a finish, and no retainer quietly rolling on. From there:</p>
+              <ul class="ladder-bullets">
+                <li>Clarity, direction and cadence running inside 14 days</li>
+                <li>Mike in the business, and a live system your whole team works from</li>
+                <li>Marketing tied to revenue targets, not reach</li>
+                <li>By the end: wasted spend cut, revenue-driving marketing proven, and a team that runs to one rhythm without being pushed</li>
+              </ul>
+              <div class="ladder-proof">Twenty years directing marketing inside Virgin, Spotify, Ericsson and Coinbase — Spotify's ad-supported revenue grew €542m to €678m, Mazda's sales rose 13% a year across 22 markets. That judgement now runs inside one system, built around yours.</div>
+              <div class="ladder-seat">
+                <div><span class="ladder-seat-title">Add a Delegate Seat</span><span class="ladder-seat-price">$500/month</span></div>
+                <p>Bring the team on board, to deliver consistency, clarity, direction and cadence across the business — not decks, or drives to search.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ladder-row reveal reveal-delay-4">
+            <div class="ladder-rail"><div class="ladder-node">4</div></div>
+            <div class="ladder-card ladder-card-quiet">
+              <div class="ladder-title-row"><span class="ladder-title">Delivery</span><span class="ladder-price" style="color:var(--slate)">Scoped</span></div>
+              <p class="ladder-body">When the plan needs building and running, Lively delivers it — custom AI agent teams handling the process work, and the right skilled marketing specialists for the craft: content, media, events, community, matched to what your plan actually calls for. Everything briefed, governed and quality-checked through the same system, so the work stays consistent whether one agent runs it or ten people do. You pay the specialists directly, with none of the agency mark-up sitting on top.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="ladder-cta reveal">
+          <a href="https://calendar.app.google/8BD4viZodJMxfCtB9" target="_blank" rel="noopener" class="btn btn-red">Schedule with Mike →</a>
         </div>
       </div>
     </section>
@@ -1400,42 +1437,42 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
       <div class="container">
         <div class="community-grid">
           <div>
-            <span class="eyebrow eyebrow-white">The community</span>
+            <span class="eyebrow eyebrow-white">The CASi Circle</span>
             <h2 id="community-heading" class="reveal" style="color:var(--white);margin-bottom:1.25rem">iamcasi.com</h2>
-            <p class="community-intro reveal">The peer network for CEOs who want real answers, not more noise.</p>
-            <p class="community-body reveal">iamcasi.com is a private, governed community; not a forum, not a feed. It's where CEOs working through the same challenges get access to the intelligence behind CASiTM, a peer group that doesn't sell to each other, and a direct line into how Lively thinks.</p>
+            <p class="community-intro reveal">A curated room of founders and CEOs — entertainment, technology and growth-stage businesses — comparing notes on what's actually working.</p>
+            <p class="community-body reveal">iamcasi.com is invite-only; not a forum, not a feed. It's where the thinking behind CASi<sup class="tm">TM</sup> reaches the room before it's obvious to the market, amongst a peer group that doesn't sell to each other — with a direct line into how Lively works.</p>
             <ul class="community-features reveal">
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
-                  <strong>Monthly intelligence report</strong>
-                  <p>The research and signal sources we use inside CASi<sup class="tm">TM</sup> engagements, sent directly to members before anyone else sees them.</p>
+                  <strong>The private edition</strong>
+                  <p>The signals, pattern reads and reasoning Mike shares with members first — the thinking behind CASi<sup class="tm">TM</sup> engagements, before it's obvious to the market. The first edition is imminent.</p>
                 </div>
               </li>
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
-                  <strong>Peer CEO roundtables</strong>
-                  <p>Sessions with $5M–$30M revenue peers solving the same problems. No vendor pitches, no consultants in the room.</p>
+                  <strong>Peer roundtables</strong>
+                  <p>Founders and CEOs solving the same problems, in the same room. No vendors, no consultants, nobody selling to anybody.</p>
                 </div>
               </li>
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
                   <strong>The podcast</strong>
-                  <p>In-room conversations with CEOs and operators on what's actually working. Launching soon — members first.</p>
+                  <p>In-room conversations with CEOs and operators on what's actually working. Members hear it first.</p>
                 </div>
               </li>
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
                   <strong>Private company hub</strong>
-                  <p>When you're ready to work with Lively directly, your space is already here.</p>
+                  <p>When you work with Lively directly, your space is already here.</p>
                 </div>
               </li>
             </ul>
-            <p class="community-body reveal" style="margin-top: 0.5rem; margin-bottom: 1.5rem; font-style: italic; font-weight: 600">Free to join whilst we build. The businesses that get in now will shape what it becomes.</p>
-            <a href="https://iamcasi.com" target="_blank" rel="noopener" class="btn btn-white">Join iamcasi.com →</a>
+            <p class="community-body reveal" style="margin-top: 0.5rem; margin-bottom: 1.5rem; font-style: italic; font-weight: 600">Entry is by invitation — extended through a conversation with Mike.</p>
+            <a href="https://calendar.app.google/8BD4viZodJMxfCtB9" target="_blank" rel="noopener" class="btn btn-white">Schedule with Mike →</a>
           </div>
           <div>
             <div class="hub-card reveal" role="img" aria-label="CASi company hub dashboard preview">
@@ -1542,7 +1579,7 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="livelylogo.svg" alt="Lively" class="footer-logo"
+          <img width="650" height="337" src="livelylogo.svg" alt="Lively" class="footer-logo"
                onerror="this.style.display='none'">
           <p class="footer-tagline">Human-led. AI-enabled. Evidence-driven. Network-powered.</p>
           <p class="footer-sub">Marketing that moves people. Strategy that drives revenue.</p>
@@ -1655,6 +1692,7 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
       const track = document.getElementById('ticker-track');
       if (!track) return;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      Array.from(track.children).forEach(card => { const c = card.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });
       let halfWidth = 0;
       const measure = () => { halfWidth = track.scrollWidth / 2; };
       measure();
@@ -1663,7 +1701,8 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
         if (!img.complete) img.addEventListener('load', measure, { once: true });
       });
 
-      let offset = 0;
+      let offset = halfWidth > 0 ? 90 - halfWidth : 0;
+      track.style.transform = `translateX(${offset}px)`;
       const speed = 40;
       let lastT = performance.now();
       let dragging = false;
