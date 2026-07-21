@@ -53,7 +53,7 @@
       "contactType": "sales",
       "url": "https://calendar.app.google/8BD4viZodJMxfCtB9"
     },
-    "sameAs": ["https://iamcasi.com", "https://newsletter.audience101.co"]
+    "sameAs": ["https://iamcasi.com"]
   }
   </script>
 
@@ -422,11 +422,11 @@
     .hero-sub { font-size: clamp(1rem, 1.8vw, 1.2rem); color: rgba(255,255,255,0.95); font-weight: 500; max-width: 100%; margin-bottom: 2.5rem; line-height: 1.7; }
     .hero-sub strong { color: var(--white); font-weight: 600; }
     .hero-cta { display: flex; flex-wrap: wrap; gap: 0.875rem; margin-bottom: 3.5rem; }
-    .hero-clarity { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.25); border-radius: var(--radius); overflow: hidden; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); max-width: 100%; }
+    .hero-clarity { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius); overflow: hidden; background: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.12); max-width: 100%; }
     .clarity-item { padding: 1.25rem 1.5rem; }
-    .clarity-item + .clarity-item { border-left: 1px solid rgba(255,255,255,0.2); }
-    .clarity-label { display: block; font-size: 0.875rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .clarity-desc { display: block; font-size: 0.8125rem; font-weight: 700; color: #fff; line-height: 1.5; }
+    .clarity-item + .clarity-item { border-left: 1px solid rgba(0,0,0,0.08); }
+    .clarity-label { display: block; font-size: 0.875rem; font-weight: 800; color: var(--red); margin-bottom: 4px; }
+    .clarity-desc { display: block; font-size: 0.8125rem; font-weight: 700; color: var(--red); line-height: 1.5; }
 
     /* ─── SECTION SHARED ─────────────────────────────────── */
     .section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
@@ -791,7 +791,7 @@
       .testimonials-grid { grid-template-columns: 1fr; }
       .for-who-grid { grid-template-columns: 1fr; }
       .hero-clarity { grid-template-columns: 1fr; }
-      .clarity-item + .clarity-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.2); }
+      .clarity-item + .clarity-item { border-left: none; border-top: 1px solid rgba(0,0,0,0.08); }
       .cadence-row { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
       .cadence-steps { justify-content: flex-start; flex-wrap: wrap; }
       .cadence-sub { margin-left: 0; text-align: left; }
@@ -1212,20 +1212,6 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
 
     <!-- TESTIMONIALS moved up after Problem section -->
 
-    <!-- ═══ SIGNAL ═══════════════════════════════════════════ -->
-    <section class="section section-white" aria-labelledby="signal-heading" style="border-top: 1px solid var(--stone);">
-      <div class="container">
-        <div class="signal-bar reveal">
-          <div>
-            <span class="signal-tag">FREE ENTRY POINT</span>
-            <div class="signal-title" id="signal-heading" style="width: 650px; line-height: 1.25">Want answers?</div>
-            <div class="signal-sub" style="width: 600px">Get the Lively Experience every month. Trend reports and insights, along with real CEO questions, all reasoned and answered through Mike &amp; CASi<sup class="tm">TM</sup>. Read it, ask your own, get a straight response.</div>
-          </div>
-          <a href="https://newsletter.audience101.co" target="_blank" rel="noopener" class="signal-btn" style="margin: 5px 0px 0px">Want Monthly Answers? →</a>
-        </div>
-      </div>
-    </section>
-
     <!-- ═══ STORY ════════════════════════════════════════════ -->
     <section class="section section-mist" id="story" aria-labelledby="story-heading">
       <div class="container">
@@ -1440,27 +1426,27 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
             <span class="eyebrow eyebrow-white">The CASi Circle</span>
             <h2 id="community-heading" class="reveal" style="color:var(--white);margin-bottom:1.25rem">iamcasi.com</h2>
             <p class="community-intro reveal">A curated room of founders and CEOs — entertainment, technology and growth-stage businesses — comparing notes on what's actually working.</p>
-            <p class="community-body reveal">iamcasi.com is invite-only; not a forum, not a feed. It's where the thinking behind CASi<sup class="tm">TM</sup> reaches the room before it's obvious to the market, amongst a peer group that doesn't sell to each other — with a direct line into how Lively works.</p>
+            <p class="community-body reveal">iamcasi.com is invite-only. It's where the thinking behind CASi<sup class="tm">TM</sup> reaches the room before it's obvious to the market — with a direct line into how Lively works.</p>
             <ul class="community-features reveal">
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
-                  <strong>The private edition</strong>
-                  <p>The signals, pattern reads and reasoning Mike shares with members first — the thinking behind CASi<sup class="tm">TM</sup> engagements, before it's obvious to the market. The first edition is imminent.</p>
+                  <strong>A room, not a feed</strong>
+                  <p>A seat alongside other CEOs and executives carrying the same questions — the same capital-allocation calls, the same growth pressure — supporting each other, not selling to each other.</p>
                 </div>
               </li>
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
-                  <strong>Peer roundtables</strong>
-                  <p>Founders and CEOs solving the same problems, in the same room. No vendors, no consultants, nobody selling to anybody.</p>
+                  <strong>The monthly read</strong>
+                  <p>One considered read a month, built around the one question most of the room is sitting with — reasoned through to the clarity, direction and cadence to solve it. Not a broadcast: reply and get a straight answer back, customised to your business. The first lands shortly.</p>
                 </div>
               </li>
               <li class="community-feature">
                 <span class="cf-dot" aria-hidden="true"></span>
                 <div>
-                  <strong>The podcast</strong>
-                  <p>In-room conversations with CEOs and operators on what's actually working. Members hear it first.</p>
+                  <strong>A direct line to Mike and Lisa</strong>
+                  <p>Ask a real question, get a real answer — from someone who's done this for over twenty years. No bot, no ticket queue.</p>
                 </div>
               </li>
               <li class="community-feature">
@@ -1483,10 +1469,9 @@ With marketing at 7–8% of revenue, that’s profit lost and customers missed (
                 <span class="hub-title">Your Company Hub</span>
               </div>
               <div class="hub-body">
-                <div class="hub-row"><span class="hub-lbl">CASi<sup class="tm">TM</sup> Score</span><span class="hub-score" style="font-weight: 700; font-size: 2px">100%</span></div>
                 <div class="hub-row"><span class="hub-lbl">Awareness &amp; Clarity</span><div class="hub-bar-wrap"><div class="hub-bar" style="width:74%"></div></div></div>
                 <div class="hub-row"><span class="hub-lbl">Proof &amp; Trust</span><div class="hub-bar-wrap"><div class="hub-bar" style="width:61%"></div></div></div>
-                <div class="hub-row"><span class="hub-lbl">Marketing Momentum</span><div class="hub-bar-wrap"><div class="hub-bar" style="width:83%"></div></div></div>
+                <div class="hub-row"><span class="hub-lbl">Marketing Cadence</span><div class="hub-bar-wrap"><div class="hub-bar" style="width:83%"></div></div></div>
                 <div class="hub-divider"></div>
                 <div>
                   <div class="hub-next-label">Next move</div>
